@@ -10,7 +10,7 @@ import lombok.*;
 @Setter
 @Builder
 public class EmployeeDto {
-    private String id;
+    private Long id;
     private String employeeId;
     private String firstName;
     private String lastName;

@@ -40,7 +40,7 @@ class EmployeeServiceImplTest {
 
     @Test
     void shouldReturnListOfEmployeesWhenFindAllIsCalledAndThereAreItemsInTheDatabase() {
-        String id = "1000";
+        Long id = 1000L;
         String employeeId = "045ABC";
         String firstName = "Ayrton";
         String lastName = "Senna";
@@ -63,7 +63,7 @@ class EmployeeServiceImplTest {
 
     @Test
     void shouldReturnEmptyListWhenFindAllIsCalledAndThereAreNoItemInTheDatabase() {
-        String id = "1000";
+        Long id = 1000L;
         String employeeId = "045ABC";
         String firstName = "Ayrton";
         String lastName = "Senna";
@@ -84,7 +84,7 @@ class EmployeeServiceImplTest {
 
     @Test
     void shouldReturnEmployeeDtoWhenFindByEmployeeIdIsFoundInTheDatabase() {
-        String id = "1000";
+        Long id = 1000L;
         String employeeId = "045ABC";
         String firstName = "Ayrton";
         String lastName = "Senna";
@@ -115,7 +115,7 @@ class EmployeeServiceImplTest {
 
     @Test
     void shouldThrowEmployeeMismatchExceptionWhenEmployeeAlreadyExists() {
-        String id = "1000";
+        Long id = 1000L;
         String employeeId = "045ABC";
         String firstName = "Ayrton";
         String lastName = "Senna";
@@ -132,7 +132,7 @@ class EmployeeServiceImplTest {
 
     @Test
     void shouldSaveEmployeeWhenNewEmployeeIsProvided() {
-        String id = "1000";
+        Long id = 1000L;
         String employeeId = "045ABC";
         String firstName = "Ayrton";
         String lastName = "Senna";
@@ -150,7 +150,7 @@ class EmployeeServiceImplTest {
 
     @Test
     void shouldDeleteByEmployeeIdSuccessfullyWhenEmployeeExists() {
-        String id = "1000";
+        Long id = 1000L;
         String employeeId = "045ABC";
         String firstName = "Ayrton";
         String lastName = "Senna";
@@ -177,7 +177,7 @@ class EmployeeServiceImplTest {
 
     @Test
     void shouldUpdateByEmployeeIdWhenUpdateByEmployeeIdIsCalledAndEmployeeExists() {
-        String id = "1000";
+        Long id = 1000L;
         String employeeId = "045ABC";
         String firstName = "Ayrton";
         String lastName = "Senna";
@@ -197,7 +197,7 @@ class EmployeeServiceImplTest {
     @Test
     void shouldThrowEmployeeNotFoundExceptionWhenUpdateByEmployeeIdIsCalledAndEmployeeDoesNotExist() {
         String employeeId = "045ABC";
-        String id = "1000";
+        Long id = 1000L;
         String firstName = "Ayrton";
         String lastName = "Senna";
 

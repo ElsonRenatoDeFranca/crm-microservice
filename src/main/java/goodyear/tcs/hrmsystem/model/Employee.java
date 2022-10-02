@@ -2,10 +2,7 @@ package goodyear.tcs.hrmsystem.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
@@ -16,10 +13,17 @@ import javax.persistence.Id;
 @Setter
 @Builder
 public class Employee {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
+
+    @Column(length = 255)
     private String employeeId;
+
+    @Column(length = 255)
     private String firstName;
+
+    @Column(length = 255)
     private String lastName;
 }

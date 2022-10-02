@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeEntityServiceFixture {
-    public static Employee getEmployee(String id, String employeeId, String firstName, String lastName) {
+    public static Employee getEmployee(Long id, String employeeId, String firstName, String lastName) {
         return Employee.builder()
                 .id(id)
                 .employeeId(employeeId)
@@ -15,8 +15,9 @@ public class EmployeeEntityServiceFixture {
                 .build();
     }
 
-    public static List<Employee> getEmployees(String id, String employeeId, String firstName, String lastName) {
-        Employee employee = Employee.builder().employeeId(id)
+    public static List<Employee> getEmployees(Long id, String employeeId, String firstName, String lastName) {
+        Employee employee = Employee.builder()
+                .id(id)
                 .employeeId(employeeId)
                 .firstName(firstName)
                 .lastName(lastName)
