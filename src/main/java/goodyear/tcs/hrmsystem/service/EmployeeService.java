@@ -6,7 +6,7 @@ import goodyear.tcs.hrmsystem.model.EmployeeDto;
 
 import java.util.List;
 
-public interface HrmSystemService {
+public interface EmployeeService {
 
     List<EmployeeDto> findAll();
 
