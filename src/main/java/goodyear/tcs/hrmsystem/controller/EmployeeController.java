@@ -66,12 +66,11 @@ public class EmployeeController {
                     content = @Content)
     })
     public ResponseEntity<EmployeeDto> findByEmployeeId(@PathVariable("employeeId") String employeeId) {
-        EmployeeDto employeeDto = employeeService.findByEmployeeId(employeeId);
-
-        if(employeeDto != null){
-            return new ResponseEntity<>(employeeDto, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try {
+            EmployeeDto employeeDto = employeeService.findByEmployeeId(employeeId);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (EmployeeNotFoundException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 
