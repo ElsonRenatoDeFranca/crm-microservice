@@ -44,9 +44,10 @@ class EmployeeServiceImplTest {
         String employeeId = "045ABC";
         String firstName = "Ayrton";
         String lastName = "Senna";
+        String countryName = "Brazil";
 
-        List<Employee> expectedEmployeeList = EmployeeEntityServiceFixture.getEmployees(id, employeeId, firstName, lastName);
-        List<EmployeeDto> expectedEmployeeDtoList = EmployeeDtoServiceFixture.getEmployeeDtoList(id, employeeId, firstName, lastName);
+        List<Employee> expectedEmployeeList = EmployeeEntityServiceFixture.getEmployees(id, employeeId, firstName, lastName, countryName);
+        List<EmployeeDto> expectedEmployeeDtoList = EmployeeDtoServiceFixture.getEmployeeDtoList(id, employeeId, firstName, lastName, countryName);
 
         when(employeeRepository.findAll()).thenReturn(expectedEmployeeList);
         when(employeeMapper.employeeEntityListToEmployeeDtoList(any())).thenReturn(expectedEmployeeDtoList);
@@ -67,6 +68,7 @@ class EmployeeServiceImplTest {
         String employeeId = "045ABC";
         String firstName = "Ayrton";
         String lastName = "Senna";
+        String countryName = "Brazil";
 
         when(employeeRepository.findAll()).thenReturn(Collections.emptyList());
         when(employeeMapper.employeeEntityListToEmployeeDtoList(any())).thenReturn(Collections.emptyList());
@@ -88,9 +90,10 @@ class EmployeeServiceImplTest {
         String employeeId = "045ABC";
         String firstName = "Ayrton";
         String lastName = "Senna";
+        String countryName = "Brazil";
 
-        Employee expectedEmployee = EmployeeEntityServiceFixture.getEmployee(id, employeeId, firstName, lastName);
-        EmployeeDto expectedEmployeeDto = EmployeeDtoServiceFixture.getEmployeeDto(id, employeeId, firstName, lastName);
+        Employee expectedEmployee = EmployeeEntityServiceFixture.getEmployee(id, employeeId, firstName, lastName, countryName);
+        EmployeeDto expectedEmployeeDto = EmployeeDtoServiceFixture.getEmployeeDto(id, employeeId, firstName, lastName, countryName);
 
         when(employeeRepository.findByEmployeeId(eq(employeeId))).thenReturn(expectedEmployee);
         when(employeeMapper.toEmployeeDto(eq(expectedEmployee))).thenReturn(expectedEmployeeDto);
@@ -119,9 +122,10 @@ class EmployeeServiceImplTest {
         String employeeId = "045ABC";
         String firstName = "Ayrton";
         String lastName = "Senna";
+        String countryName = "Brazil";
 
-        Employee expectedEmployee = EmployeeEntityServiceFixture.getEmployee(id, employeeId, firstName, lastName);
-        EmployeeDto expectedEmployeeDto = EmployeeDtoServiceFixture.getEmployeeDto(id, employeeId, firstName, lastName);
+        Employee expectedEmployee = EmployeeEntityServiceFixture.getEmployee(id, employeeId, firstName, lastName, countryName);
+        EmployeeDto expectedEmployeeDto = EmployeeDtoServiceFixture.getEmployeeDto(id, employeeId, firstName, lastName, countryName);
 
         when(employeeRepository.findByEmployeeId(eq(employeeId))).thenReturn(expectedEmployee);
 
@@ -136,9 +140,10 @@ class EmployeeServiceImplTest {
         String employeeId = "045ABC";
         String firstName = "Ayrton";
         String lastName = "Senna";
+        String countryName = "Brazil";
 
-        Employee expectedEmployee = EmployeeEntityServiceFixture.getEmployee(id, employeeId, firstName, lastName);
-        EmployeeDto expectedEmployeeDto = EmployeeDtoServiceFixture.getEmployeeDto(id, employeeId, firstName, lastName);
+        Employee expectedEmployee = EmployeeEntityServiceFixture.getEmployee(id, employeeId, firstName, lastName, countryName);
+        EmployeeDto expectedEmployeeDto = EmployeeDtoServiceFixture.getEmployeeDto(id, employeeId, firstName, lastName, countryName);
 
         when(employeeRepository.findByEmployeeId(eq(employeeId))).thenReturn(null);
         when(employeeMapper.toEmployee(eq(expectedEmployeeDto))).thenReturn(expectedEmployee);
@@ -154,9 +159,9 @@ class EmployeeServiceImplTest {
         String employeeId = "045ABC";
         String firstName = "Ayrton";
         String lastName = "Senna";
+        String countryName = "Brazil";
 
-        Employee expectedEmployee = EmployeeEntityServiceFixture.getEmployee(id, employeeId, firstName, lastName);
-
+        Employee expectedEmployee = EmployeeEntityServiceFixture.getEmployee(id, employeeId, firstName, lastName, countryName);
         when(employeeRepository.findByEmployeeId(eq(employeeId))).thenReturn(expectedEmployee);
 
         this.employeeService.deleteByEmployeeId(employeeId);
@@ -181,9 +186,10 @@ class EmployeeServiceImplTest {
         String employeeId = "045ABC";
         String firstName = "Ayrton";
         String lastName = "Senna";
+        String countryName = "Brazil";
 
-        Employee expectedEmployee = EmployeeEntityServiceFixture.getEmployee(id, employeeId, firstName, lastName);
-        EmployeeDto expectedEmployeeDto = EmployeeDtoServiceFixture.getEmployeeDto(id, employeeId, firstName, lastName);
+        Employee expectedEmployee = EmployeeEntityServiceFixture.getEmployee(id, employeeId, firstName, lastName, countryName);
+        EmployeeDto expectedEmployeeDto = EmployeeDtoServiceFixture.getEmployeeDto(id, employeeId, firstName, lastName, countryName);
 
         when(employeeRepository.findByEmployeeId(eq(employeeId))).thenReturn(expectedEmployee);
         when(employeeMapper.toEmployee(eq(expectedEmployeeDto))).thenReturn(expectedEmployee);
@@ -200,9 +206,10 @@ class EmployeeServiceImplTest {
         Long id = 1000L;
         String firstName = "Ayrton";
         String lastName = "Senna";
+        String countryName = "Brazil";
 
-        Employee expectedEmployee = EmployeeEntityServiceFixture.getEmployee(id, employeeId, firstName, lastName);
-        EmployeeDto expectedEmployeeDto = EmployeeDtoServiceFixture.getEmployeeDto(id, employeeId, firstName, lastName);
+        Employee expectedEmployee = EmployeeEntityServiceFixture.getEmployee(id, employeeId, firstName, lastName, countryName);
+        EmployeeDto expectedEmployeeDto = EmployeeDtoServiceFixture.getEmployeeDto(id, employeeId, firstName, lastName, countryName);
 
         when(employeeRepository.findByEmployeeId(eq(employeeId))).thenReturn(null);
         when(employeeMapper.toEmployee(eq(expectedEmployeeDto))).thenReturn(expectedEmployee);

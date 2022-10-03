@@ -14,4 +14,5 @@ public class EmployeeDto {
     private String employeeId;
     private String firstName;
     private String lastName;
+    private String countryName;
 }

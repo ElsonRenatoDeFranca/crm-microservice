@@ -26,4 +26,7 @@ public class Employee {
 
     @Column(length = 255)
     private String lastName;
+
+    @Column(length = 255)
+    private String countryName;
 }

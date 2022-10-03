@@ -17,6 +17,7 @@ public interface EmployeeMapper {
     @Mapping(target = "employeeId", source = "employeeId")
     @Mapping(target = "firstName", source = "firstName")
     @Mapping(target = "lastName", source = "lastName")
+    @Mapping(target = "countryName", source = "countryName")
     EmployeeDto toEmployeeDto(Employee employee);
 
 
@@ -24,6 +25,7 @@ public interface EmployeeMapper {
     @Mapping(target = "employeeId", source = "employeeId")
     @Mapping(target = "firstName", source = "firstName")
     @Mapping(target = "lastName", source = "lastName")
+    @Mapping(target = "countryName", source = "countryName")
     Employee toEmployee(EmployeeDto employeeDto);
 
 
