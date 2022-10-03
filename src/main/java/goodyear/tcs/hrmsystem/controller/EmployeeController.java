@@ -68,7 +68,7 @@ public class EmployeeController {
     public ResponseEntity<EmployeeDto> findByEmployeeId(@PathVariable("employeeId") String employeeId) {
         try {
             EmployeeDto employeeDto = employeeService.findByEmployeeId(employeeId);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(employeeDto, HttpStatus.OK);
         } catch (EmployeeNotFoundException e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
@@ -87,7 +87,7 @@ public class EmployeeController {
                     description = "The service is not available",
                     content = @Content)
     })
-    public void deleteByEmployeeId(@PathVariable String employeeId) {
+    public void deleteByEmployeeId(@PathVariable("employeeId") String employeeId) {
         try {
             employeeService.deleteByEmployeeId(employeeId);
         } catch (EmployeeNotFoundException e) {
@@ -95,7 +95,8 @@ public class EmployeeController {
         }
     }
 
-    @PutMapping("/{employeeId}")
+
+    @RequestMapping(value = "/{employeeId}", method = RequestMethod.PUT)
     @Operation(summary = "Update by employeeId")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
@@ -108,7 +109,7 @@ public class EmployeeController {
                     description = "The service is not available",
                     content = @Content)
     })
-    public void updateByEmployeeId(@PathVariable String employeeId, @RequestBody EmployeeDto employeeDto) {
+    public void updateByEmployeeId(@RequestBody EmployeeDto employeeDto, @PathVariable("employeeId") String employeeId) {
         try {
             employeeService.updateByEmployeeId(employeeId, employeeDto);
         } catch (EmployeeNotFoundException e) {
@@ -116,6 +117,21 @@ public class EmployeeController {
         }
     }
 
+    @GetMapping("/employees/{countryName}")
+    @ResponseBody
+    @Operation(summary = "Find all employees by countryName")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Find all employees by countryName",
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(responseCode = "503",
+                    description = "The service is not available",
+                    content = @Content)
+    })
+    public ResponseEntity<List<EmployeeDto>> findAllByCountryName(@PathVariable("countryName") String countryName) {
+        List<EmployeeDto> employeeDtoList = employeeService.findByCountryName(countryName);
+        return new ResponseEntity<>(employeeDtoList, HttpStatus.OK);
+    }
 
 
 }

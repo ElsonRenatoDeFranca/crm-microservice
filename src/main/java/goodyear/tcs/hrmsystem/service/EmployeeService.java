@@ -17,4 +17,6 @@ public interface EmployeeService {
     void deleteByEmployeeId(String employeeId) throws EmployeeNotFoundException;
 
     EmployeeDto updateByEmployeeId(String employeeId, EmployeeDto employeeDto)  throws EmployeeNotFoundException;
+
+    List<EmployeeDto> findByCountryName(String countryName);
 }

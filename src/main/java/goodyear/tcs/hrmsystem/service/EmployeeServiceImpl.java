@@ -7,6 +7,7 @@ import goodyear.tcs.hrmsystem.model.Employee;
 import goodyear.tcs.hrmsystem.model.EmployeeDto;
 import goodyear.tcs.hrmsystem.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @Transactional
     public void save(EmployeeDto employeeDto) throws EmployeeMismatchException {
         Employee employee = employeeRepository.findByEmployeeId(employeeDto.getEmployeeId());
 
@@ -49,6 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @Transactional
     public void deleteByEmployeeId(String employeeId) throws EmployeeNotFoundException {
         Employee employee = employeeRepository.findByEmployeeId(employeeId);
 
@@ -60,6 +63,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @Transactional
     public EmployeeDto updateByEmployeeId(String employeeId, EmployeeDto employeeDto) throws EmployeeNotFoundException {
         Employee existingEmployee = employeeRepository.findByEmployeeId(employeeId);
         Employee updatedEmployee = employeeMapper.toEmployee(employeeDto);
@@ -71,5 +75,11 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeNotFoundException("Employee not found");
         }
         return employeeMapper.toEmployeeDto(updatedEmployee);
+    }
+
+    @Override
+    public List<EmployeeDto> findByCountryName(String countryName) {
+        List<Employee> employeeDtoList = employeeRepository.findByCountryName(countryName);
+        return employeeMapper.employeeEntityListToEmployeeDtoList(employeeDtoList);
     }
 }
