@@ -78,7 +78,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<EmployeeDto> findByCountryName(String countryName) {
+    public List<EmployeeDto> findAllByCountryName(String countryName) {
         List<Employee> employeeDtoList = employeeRepository.findByCountryName(countryName);
         return employeeMapper.employeeEntityListToEmployeeDtoList(employeeDtoList);
     }

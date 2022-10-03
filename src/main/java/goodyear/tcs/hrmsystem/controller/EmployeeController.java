@@ -129,7 +129,7 @@ public class EmployeeController {
                     content = @Content)
     })
     public ResponseEntity<List<EmployeeDto>> findAllByCountryName(@PathVariable("countryName") String countryName) {
-        List<EmployeeDto> employeeDtoList = employeeService.findByCountryName(countryName);
+        List<EmployeeDto> employeeDtoList = employeeService.findAllByCountryName(countryName);
         return new ResponseEntity<>(employeeDtoList, HttpStatus.OK);
     }
 

@@ -85,6 +85,30 @@ class EmployeeServiceImplTest {
     }
 
     @Test
+    void shouldReturnListOfEmployeesWhenFindAllByCountryNameIsCalled() {
+        Long id = 1000L;
+        String employeeId = "045ABC";
+        String firstName = "Ayrton";
+        String lastName = "Senna";
+        String countryName = "Brazil";
+
+        List<Employee> expectedEmployeeList = EmployeeEntityServiceFixture.getEmployees(id, employeeId, firstName, lastName, countryName);
+        List<EmployeeDto> expectedEmployeeDtoList = EmployeeDtoServiceFixture.getEmployeeDtoList(id, employeeId, firstName, lastName, countryName);
+
+        when(employeeRepository.findByCountryName(eq(countryName))).thenReturn(expectedEmployeeList);
+        when(employeeMapper.employeeEntityListToEmployeeDtoList(any())).thenReturn(expectedEmployeeDtoList);
+
+        List<EmployeeDto> actualEmployeeDtoList = employeeService.findAllByCountryName(countryName);
+
+        verify(employeeRepository, times(1)).findByCountryName(eq(countryName));
+
+        assertThat(actualEmployeeDtoList, is(notNullValue()));
+        assertThat(actualEmployeeDtoList,
+                hasItem(hasProperty("countryName", is(countryName))));
+
+    }
+
+    @Test
     void shouldReturnEmployeeDtoWhenFindByEmployeeIdIsFoundInTheDatabase() {
         Long id = 1000L;
         String employeeId = "045ABC";
