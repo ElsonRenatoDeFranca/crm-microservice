@@ -220,6 +220,7 @@ class EmployeeServiceImplTest {
 
         this.employeeService.updateByEmployeeId(employeeId, expectedEmployeeDto);
 
+        verify(employeeRepository, times(1)).deleteByEmployeeId(eq(employeeId));
         verify(employeeRepository, times(1)).save(eq(expectedEmployee));
     }
 

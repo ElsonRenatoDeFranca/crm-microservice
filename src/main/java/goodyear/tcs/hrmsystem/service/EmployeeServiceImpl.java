@@ -70,6 +70,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         if (existingEmployee != null) {
             updatedEmployee.setEmployeeId(existingEmployee.getEmployeeId());
+            employeeRepository.deleteByEmployeeId(employeeId);
             employeeRepository.save(updatedEmployee);
         } else {
             throw new EmployeeNotFoundException("Employee not found");
