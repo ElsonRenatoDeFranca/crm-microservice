@@ -1,4 +1,4 @@
-package training.cloudnative.crmmicroservice.controller;
+package training.cloudnative.crmmicroservice.resource;
 
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,7 +31,7 @@ public interface CrmApi {
     ResponseEntity<Void> save(@RequestBody CustomerDto customerDto);
 
 
-    @GetMapping(value = "/find-all", produces = {APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/findall", produces = {APPLICATION_JSON_VALUE})
     @ResponseBody
     @Operation(summary = "Find all customers")
     @ApiResponses(value = {
@@ -45,7 +45,7 @@ public interface CrmApi {
     ResponseEntity<List<CustomerDto>> findAll();
 
 
-    @GetMapping(value = "/find-customer/{customerId}", produces = {APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/findcustomer/{customerId}", produces = {APPLICATION_JSON_VALUE})
     @ResponseBody
     @Operation(summary = "Find customer by customerId")
     @ApiResponses(value = {
@@ -61,7 +61,7 @@ public interface CrmApi {
     })
     ResponseEntity<CustomerDto> findByCustomerId(@PathVariable("customerId") String customerId);
 
-    @DeleteMapping("/delete-customer/{customerId}")
+    @DeleteMapping("/deletecustomer/{customerId}")
     @Operation(summary = "Delete by customerId")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
@@ -77,7 +77,7 @@ public interface CrmApi {
     ResponseEntity<Void> deleteByCustomerId(@PathVariable("customerId") String customerId);
 
 
-    @RequestMapping(value = "/update-customer/{customerId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/updatecustomer/{customerId}", method = RequestMethod.PUT)
     @Operation(summary = "Update by customerId")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",

@@ -1,13 +1,18 @@
-package training.cloudnative.crmmicroservice.controller;
+package training.cloudnative.crmmicroservice.resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
+import training.cloudnative.crmmicroservice.exception.CustomerMismatchException;
+import training.cloudnative.crmmicroservice.exception.CustomerNotFoundException;
 import training.cloudnative.crmmicroservice.model.CustomerDto;
 import training.cloudnative.crmmicroservice.service.CrmService;
 
 import java.util.List;
 
+@RestController
 public class CrmResource implements CrmApi {
 
     private static final Logger log = LoggerFactory.getLogger(CrmResource.class);
@@ -20,8 +25,12 @@ public class CrmResource implements CrmApi {
     @Override
     public ResponseEntity<Void> save(CustomerDto customerDto) {
         log.info("Saving customer {}", customerDto);
-        crmService.save(customerDto);
-        return ResponseEntity.ok().build();
+        try {
+            crmService.save(customerDto);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (CustomerMismatchException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @Override
@@ -45,21 +54,30 @@ public class CrmResource implements CrmApi {
     public ResponseEntity<Void> deleteByCustomerId(String customerId) {
         log.info("Deleting customer by id {}", customerId);
 
-        crmService.deleteByCustomerId(customerId);
-        CustomerDto customerDto = crmService.findByCustomerId(customerId);
+        try {
+            crmService.deleteByCustomerId(customerId);
+            CustomerDto customerDto = crmService.findByCustomerId(customerId);
 
-        if (customerDto == null) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.internalServerError().build();
+            if (customerDto == null) {
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.internalServerError().build();
+            }
+        } catch (CustomerNotFoundException e) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @Override
     public ResponseEntity<Void> updateByCustomerId(CustomerDto customerDto, String customerId) {
         log.info("Update customer by id {}", customerId);
-        crmService.updateByCustomerId(customerDto, customerId);
-        return ResponseEntity.ok().build();
+
+        try {
+            crmService.updateByCustomerId(customerDto, customerId);
+            return ResponseEntity.ok().build();
+        } catch (CustomerNotFoundException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @Override

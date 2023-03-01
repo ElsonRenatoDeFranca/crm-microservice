@@ -1,14 +1,13 @@
 package training.cloudnative.crmmicroservice.service;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import training.cloudnative.crmmicroservice.exception.CustomerMismatchException;
 import training.cloudnative.crmmicroservice.exception.CustomerNotFoundException;
-import training.cloudnative.crmmicroservice.exception.EmployeeMismatchException;
 import training.cloudnative.crmmicroservice.mapper.CrmMapper;
 import training.cloudnative.crmmicroservice.model.Customer;
 import training.cloudnative.crmmicroservice.model.CustomerDto;
 import training.cloudnative.crmmicroservice.repository.CrmRepository;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -38,7 +37,7 @@ public class CrmService {
             Customer newCustomer = crmMapper.toCustomer(customerDto);
             crmRepository.save(newCustomer);
         } else {
-            throw new EmployeeMismatchException("Customer already exists");
+            throw new CustomerMismatchException("Customer already exists");
         }
     }
 
