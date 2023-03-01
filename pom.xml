@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>goodyear.tcs</groupId>
-	<artifactId>hrmsystem</artifactId>
+	<artifactId>crm-microservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>hrmsystem</name>
 	<description>HRM System</description>
