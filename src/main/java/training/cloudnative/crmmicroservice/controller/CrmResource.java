@@ -1,39 +1,70 @@
 package training.cloudnative.crmmicroservice.controller;
 
-import training.cloudnative.crmmicroservice.model.CustomerDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import training.cloudnative.crmmicroservice.model.CustomerDto;
+import training.cloudnative.crmmicroservice.service.CrmService;
 
 import java.util.List;
 
-public class CrmResource implements CrmApi{
+public class CrmResource implements CrmApi {
+
+    private static final Logger log = LoggerFactory.getLogger(CrmResource.class);
+    private final CrmService crmService;
+
+    public CrmResource(CrmService crmService) {
+        this.crmService = crmService;
+    }
 
     @Override
-    public ResponseEntity<CustomerDto> save(CustomerDto customerDto) {
-        return null;
+    public ResponseEntity<Void> save(CustomerDto customerDto) {
+        log.info("Saving customer {}", customerDto);
+        crmService.save(customerDto);
+        return ResponseEntity.ok().build();
     }
 
     @Override
     public ResponseEntity<List<CustomerDto>> findAll() {
-        return null;
+        log.info("Searching all customers");
+        return ResponseEntity.ok(crmService.findAll());
     }
 
     @Override
     public ResponseEntity<CustomerDto> findByCustomerId(String customerId) {
-        return null;
+        log.info("Searching customer by id {}", customerId);
+        CustomerDto customerDto = crmService.findByCustomerId(customerId);
+
+        if (customerDto == null) {
+            ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(crmService.findByCustomerId(customerId));
     }
 
     @Override
-    public void deleteByCustomerId(String customerId) {
+    public ResponseEntity<Void> deleteByCustomerId(String customerId) {
+        log.info("Deleting customer by id {}", customerId);
 
+        crmService.deleteByCustomerId(customerId);
+        CustomerDto customerDto = crmService.findByCustomerId(customerId);
+
+        if (customerDto == null) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     @Override
-    public void updateByCustomerId(CustomerDto customerDto, String customerId) {
-
+    public ResponseEntity<Void> updateByCustomerId(CustomerDto customerDto, String customerId) {
+        log.info("Update customer by id {}", customerId);
+        crmService.updateByCustomerId(customerDto, customerId);
+        return ResponseEntity.ok().build();
     }
 
     @Override
     public ResponseEntity<List<CustomerDto>> findAllByCountryName(String countryName) {
-        return null;
+        log.info("Finding all customers by country name {}", countryName);
+        return ResponseEntity.ok(crmService.findAllByCountryName(countryName));
     }
 }

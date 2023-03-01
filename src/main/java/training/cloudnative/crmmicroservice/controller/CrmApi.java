@@ -28,7 +28,7 @@ public interface CrmApi {
                     description = "The service is not available",
                     content = @Content)
     })
-    ResponseEntity<CustomerDto> save(@RequestBody CustomerDto customerDto);
+    ResponseEntity<Void> save(@RequestBody CustomerDto customerDto);
 
 
     @GetMapping(value = "/find-all", produces = {APPLICATION_JSON_VALUE})
@@ -74,7 +74,7 @@ public interface CrmApi {
                     description = "The service is not available",
                     content = @Content)
     })
-    void deleteByCustomerId(@PathVariable("customerId") String customerId);
+    ResponseEntity<Void> deleteByCustomerId(@PathVariable("customerId") String customerId);
 
 
     @RequestMapping(value = "/update-customer/{customerId}", method = RequestMethod.PUT)
@@ -90,7 +90,7 @@ public interface CrmApi {
                     description = "The service is not available",
                     content = @Content)
     })
-    void updateByCustomerId(@RequestBody CustomerDto customerDto, @PathVariable("customerId") String customerId);
+    ResponseEntity<Void> updateByCustomerId(@RequestBody CustomerDto customerDto, @PathVariable("customerId") String customerId);
 
 
     @GetMapping("/customers/{countryName}")

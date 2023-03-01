@@ -54,7 +54,7 @@ public class CrmService {
     }
 
     @Transactional
-    public CustomerDto updateByCustomerId(String customerId, CustomerDto customerDto) throws CustomerNotFoundException {
+    public CustomerDto updateByCustomerId(CustomerDto customerDto, String customerId) throws CustomerNotFoundException {
         Customer existingCustomer = crmRepository.findByCustomerId(customerId);
         Customer updatedCustomer = crmMapper.toCustomer(customerDto);
 
