@@ -16,6 +16,10 @@ public class CrmService {
     private final CrmRepository crmRepository;
     private final CrmMapper crmMapper;
 
+    private static final String CUSTOMER_NOT_FOUND_EXCEPTION_MESSAGE = "Customer not found";
+    private static final String CUSTOMER_MISMATCH_EXCEPTION_MESSAGE = "Customer already exists";
+
+
     public CrmService(CrmRepository crmRepository, CrmMapper crmMapper) {
         this.crmRepository = crmRepository;
         this.crmMapper = crmMapper;
@@ -25,8 +29,12 @@ public class CrmService {
         return crmMapper.customerEntityListToCustomerDtoList(crmRepository.findAll());
     }
 
-    public CustomerDto findByCustomerId(String customerId) {
-        return crmMapper.toCustomerDto(crmRepository.findByCustomerId(customerId));
+    public CustomerDto findByCustomerId(String customerId) throws CustomerNotFoundException {
+        Customer customer = crmRepository.findByCustomerId(customerId);
+        if (customer == null) {
+            throw new CustomerNotFoundException(CUSTOMER_NOT_FOUND_EXCEPTION_MESSAGE);
+        }
+        return crmMapper.toCustomerDto(customer);
     }
 
     @Transactional
@@ -37,7 +45,7 @@ public class CrmService {
             Customer newCustomer = crmMapper.toCustomer(customerDto);
             crmRepository.save(newCustomer);
         } else {
-            throw new CustomerMismatchException("Customer already exists");
+            throw new CustomerMismatchException(CUSTOMER_MISMATCH_EXCEPTION_MESSAGE);
         }
     }
 
@@ -48,7 +56,7 @@ public class CrmService {
         if (customer != null) {
             crmRepository.deleteByCustomerId(customerId);
         } else {
-            throw new CustomerNotFoundException("Customer not found");
+            throw new CustomerNotFoundException(CUSTOMER_NOT_FOUND_EXCEPTION_MESSAGE);
         }
     }
 
@@ -62,7 +70,7 @@ public class CrmService {
             crmRepository.deleteByCustomerId(customerId);
             crmRepository.save(updatedCustomer);
         } else {
-            throw new CustomerNotFoundException("Customer not found");
+            throw new CustomerNotFoundException(CUSTOMER_NOT_FOUND_EXCEPTION_MESSAGE);
         }
         return crmMapper.toCustomerDto(updatedCustomer);
     }
