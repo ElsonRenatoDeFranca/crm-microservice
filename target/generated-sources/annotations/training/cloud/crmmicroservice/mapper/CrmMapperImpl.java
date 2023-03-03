@@ -11,7 +11,7 @@ import training.cloud.crmmicroservice.model.CustomerDto.CustomerDtoBuilder;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-02T14:21:26-0300",
+    date = "2023-03-03T01:57:31-0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.16.1 (Oracle Corporation)"
 )
 @Component
