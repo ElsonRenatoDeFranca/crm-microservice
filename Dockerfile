@@ -5,7 +5,7 @@ RUN mvn -B -f pom.xml dependency:go-offline
 
 # Copy all other project files and build project
 COPY . .
-RUN mvn -B install -DskipTests=true
+RUN mvn -B clean install -DskipTests=true
 
 ##Copy the generated jar file into container directory
 FROM sensedia/openjdk17-base:latest
