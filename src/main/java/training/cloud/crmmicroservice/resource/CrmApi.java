@@ -9,13 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import training.cloud.crmmicroservice.model.CustomerDto;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RequestMapping("/api/crm")
 public interface CrmApi {
-    @PostMapping(value = "/add-customer", produces = {APPLICATION_JSON_VALUE})
+    @PostMapping(value = "/customers", produces = {APPLICATION_JSON_VALUE})
     @Operation(summary = "Save a customer to database")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201",
@@ -28,10 +29,10 @@ public interface CrmApi {
                     description = "The service is not available",
                     content = @Content)
     })
-    ResponseEntity<Void> save(@RequestBody CustomerDto customerDto);
+    ResponseEntity<Void> save(@Valid @RequestBody CustomerDto customerDto);
 
 
-    @GetMapping(value = "/findall", produces = {APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/customers", produces = {APPLICATION_JSON_VALUE})
     @ResponseBody
     @Operation(summary = "Find all customers")
     @ApiResponses(value = {
@@ -45,7 +46,7 @@ public interface CrmApi {
     ResponseEntity<List<CustomerDto>> findAll();
 
 
-    @GetMapping(value = "/findcustomer/{customerId}", produces = {APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/customers/{customerId}", produces = {APPLICATION_JSON_VALUE})
     @ResponseBody
     @Operation(summary = "Find customer by customerId")
     @ApiResponses(value = {
@@ -61,7 +62,7 @@ public interface CrmApi {
     })
     ResponseEntity<CustomerDto> findByCustomerId(@PathVariable("customerId") String customerId);
 
-    @DeleteMapping("/deletecustomer/{customerId}")
+    @DeleteMapping("/customers/{customerId}")
     @Operation(summary = "Delete by customerId")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
@@ -77,7 +78,7 @@ public interface CrmApi {
     ResponseEntity<Void> deleteByCustomerId(@PathVariable("customerId") String customerId);
 
 
-    @RequestMapping(value = "/updatecustomer/{customerId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/customers/{customerId}", method = RequestMethod.PUT)
     @Operation(summary = "Update by customerId")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
@@ -90,7 +91,7 @@ public interface CrmApi {
                     description = "The service is not available",
                     content = @Content)
     })
-    ResponseEntity<Void> updateByCustomerId(@RequestBody CustomerDto customerDto, @PathVariable("customerId") String customerId);
+    ResponseEntity<Void> updateByCustomerId(@Valid @RequestBody CustomerDto customerDto, @PathVariable("customerId") String customerId);
 
 
     @GetMapping("/customers/{countryName}")
@@ -104,6 +105,6 @@ public interface CrmApi {
                     description = "The service is not available",
                     content = @Content)
     })
-    public ResponseEntity<List<CustomerDto>> findAllByCountryName(@PathVariable("countryName") String countryName);
+    ResponseEntity<List<CustomerDto>> findAllByCountryName(@PathVariable("countryName") String countryName);
 
 }
