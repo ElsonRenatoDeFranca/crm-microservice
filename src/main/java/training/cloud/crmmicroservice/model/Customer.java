@@ -13,6 +13,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @Builder
+@Table(name="customer", schema = "public")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
