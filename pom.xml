@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<testcontainers.version>1.17.4</testcontainers.version>
+		<modelmapper.version>3.0.0</modelmapper.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -70,6 +71,11 @@
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>1.4.2.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>${modelmapper.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>

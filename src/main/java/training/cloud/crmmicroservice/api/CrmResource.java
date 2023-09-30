@@ -1,4 +1,4 @@
-package training.cloud.crmmicroservice.resource;
+package training.cloud.crmmicroservice.api;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
