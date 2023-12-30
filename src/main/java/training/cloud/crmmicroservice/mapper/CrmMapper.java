@@ -1,12 +1,12 @@
 package training.cloud.crmmicroservice.mapper;
 
 
-import training.cloud.crmmicroservice.model.Customer;
 import training.cloud.crmmicroservice.model.CustomerDto;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
+import training.cloud.crmmicroservice.persistence.entity.Customer;
 
 import java.util.List;
 

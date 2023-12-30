@@ -1,14 +1,11 @@
-package training.cloud.crmmicroservice.repository;
-
+package training.cloud.crmmicroservice.persistence.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 import training.cloud.crmmicroservice.persistence.entity.Customer;
 
 import java.util.List;
 
-@Repository
-public interface CrmRepository extends JpaRepository<Customer, String> {
+public interface CustomerRepository extends JpaRepository<Customer, String> {
     Customer findByCustomerId(String customerId);
 
     void deleteByCustomerId(String customerId);

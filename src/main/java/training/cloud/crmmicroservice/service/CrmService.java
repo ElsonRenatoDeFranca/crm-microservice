@@ -5,8 +5,8 @@ import org.springframework.transaction.annotation.Transactional;
 import training.cloud.crmmicroservice.exception.CustomerMismatchException;
 import training.cloud.crmmicroservice.exception.CustomerNotFoundException;
 import training.cloud.crmmicroservice.mapper.CrmMapper;
-import training.cloud.crmmicroservice.model.Customer;
 import training.cloud.crmmicroservice.model.CustomerDto;
+import training.cloud.crmmicroservice.persistence.entity.Customer;
 import training.cloud.crmmicroservice.repository.CrmRepository;
 
 import java.util.List;

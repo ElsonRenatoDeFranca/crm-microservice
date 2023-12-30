@@ -7,6 +7,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import training.cloud.crmmicroservice.api.dto.CustomerResponseViewModel;
+import training.cloud.crmmicroservice.api.dto.CustomerViewModel;
 import training.cloud.crmmicroservice.model.CustomerDto;
 
 import javax.validation.Valid;
@@ -21,14 +23,13 @@ import static training.cloud.crmmicroservice.api.ApiDocumentationConstants.CRM_A
 import static training.cloud.crmmicroservice.api.ApiDocumentationConstants.DELETE_DESCRIPTION;
 import static training.cloud.crmmicroservice.api.ApiDocumentationConstants.NOT_FOUND_CODE;
 import static training.cloud.crmmicroservice.api.ApiDocumentationConstants.NOT_FOUND_DESCRIPTION;
-import static training.cloud.crmmicroservice.api.ApiDocumentationConstants.OFFERING_API_ROOT_PATH;
 import static training.cloud.crmmicroservice.api.ApiDocumentationConstants.OK_CODE;
 import static training.cloud.crmmicroservice.api.ApiDocumentationConstants.SERVICE_UNAVAILABLE_CODE;
 import static training.cloud.crmmicroservice.api.ApiDocumentationConstants.SERVICE_UNAVAILABLE_DESCRIPTION;
 import static training.cloud.crmmicroservice.api.ApiDocumentationConstants.UPDATE_DESCRIPTION;
 
 @RequestMapping(CRM_API_ROOT_PATH )
-public interface CrmApi {
+public interface CustomerApi {
     @PostMapping(value = "/customers", produces = {APPLICATION_JSON_VALUE})
     @Operation(summary = "Save a customer to database")
     @ApiResponses(value = {
@@ -42,7 +43,7 @@ public interface CrmApi {
                     description = SERVICE_UNAVAILABLE_DESCRIPTION,
                     content = @Content)
     })
-    ResponseEntity<Void> save(@Valid @RequestBody CustomerDto customerDto);
+    ResponseEntity<Void> save(@Valid @RequestBody CustomerViewModel customerViewModel);
 
 
     @GetMapping(value = "/customers", produces = {APPLICATION_JSON_VALUE})
@@ -56,7 +57,7 @@ public interface CrmApi {
                     description = SERVICE_UNAVAILABLE_DESCRIPTION,
                     content = @Content)
     })
-    ResponseEntity<List<CustomerDto>> findAll();
+    ResponseEntity<List<CustomerResponseViewModel>> findAll();
 
 
     @GetMapping(value = "/customers/{customerId}", produces = {APPLICATION_JSON_VALUE})
@@ -73,7 +74,7 @@ public interface CrmApi {
                     description = SERVICE_UNAVAILABLE_DESCRIPTION,
                     content = @Content)
     })
-    ResponseEntity<CustomerDto> findByCustomerId(@PathVariable("customerId") String customerId);
+    ResponseEntity<CustomerResponseViewModel> findByCustomerId(@PathVariable("customerId") String customerId);
 
     @DeleteMapping("/customers/{customerId}")
     @Operation(summary = "Delete by customerId")
@@ -104,7 +105,7 @@ public interface CrmApi {
                     description = SERVICE_UNAVAILABLE_DESCRIPTION,
                     content = @Content)
     })
-    ResponseEntity<Void> updateByCustomerId(@Valid @RequestBody CustomerDto customerDto, @PathVariable("customerId") String customerId);
+    ResponseEntity<Void> updateByCustomerId(@Valid @RequestBody CustomerViewModel customerViewModel, @PathVariable("customerId") String customerId);
 
 
     @GetMapping("/customers/{countryName}")
