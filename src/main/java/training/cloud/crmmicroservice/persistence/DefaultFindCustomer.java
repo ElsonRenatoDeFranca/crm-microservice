@@ -3,8 +3,7 @@ package training.cloud.crmmicroservice.persistence;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import training.cloud.crmmicroservice.domain.interactor.FindCustomer;
-import training.cloud.crmmicroservice.domain.interactor.output.customer.model.CustomerRepositoryModel;
+import training.cloud.crmmicroservice.domain.output.customer.model.CustomerRepositoryModel;
 import training.cloud.crmmicroservice.persistence.converter.CustomerRepositoryModelToEntityModelConverter;
 import training.cloud.crmmicroservice.persistence.entity.Customer;
 import training.cloud.crmmicroservice.persistence.repository.CustomerRepository;
@@ -28,6 +27,13 @@ public class DefaultFindCustomer implements FindCustomer {
     @Override
     public List<CustomerRepositoryModel> findAll() {
         List<Customer> customers = customerRepository.findAll();
+        return customers.stream().map(customerRepositoryModelToEntityModelConverter::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CustomerRepositoryModel> findAllByCountryName(String countryName) {
+        List<Customer> customers = customerRepository.findByCountryName(countryName);
         return customers.stream().map(customerRepositoryModelToEntityModelConverter::fromEntity)
                 .collect(Collectors.toList());
     }

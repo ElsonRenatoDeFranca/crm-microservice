@@ -1,7 +1,7 @@
 package training.cloud.crmmicroservice.converter;
 
-import training.cloud.crmmicroservice.api.dto.CustomerViewModel;
-import training.cloud.crmmicroservice.domain.interactor.model.CustomerInteractorModel;
+import training.cloud.crmmicroservice.api.dto.CustomerRequestModel;
+import training.cloud.crmmicroservice.domain.model.CustomerInteractorModel;
 
-public interface CustomerViewModelToInteractorModelConverter extends ModelToModelConverter<CustomerViewModel, CustomerInteractorModel>{
+public interface CustomerViewModelToInteractorModelConverter extends ModelToModelConverter<CustomerRequestModel, CustomerInteractorModel>{
 }

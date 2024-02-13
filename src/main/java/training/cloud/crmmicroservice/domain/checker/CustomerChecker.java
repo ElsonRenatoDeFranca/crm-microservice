@@ -1,4 +1,4 @@
-package training.cloud.crmmicroservice.domain.interactor.checker;
+package training.cloud.crmmicroservice.domain.checker;
 
 public interface CustomerChecker {
     void checkByCustomerId(String customerId);

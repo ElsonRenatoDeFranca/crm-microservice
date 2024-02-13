@@ -28,7 +28,7 @@ public interface CrmMapper {
     @Mapping(target = "firstName", source = "firstName")
     @Mapping(target = "lastName", source = "lastName")
     @Mapping(target = "countryName", source = "countryName")
-    Customer toCustomer(CustomerDto customerDto);
+    Customer toCustomerEntity(CustomerDto customerDto);
 
 
     @Mapping(target = "id", source = "id")

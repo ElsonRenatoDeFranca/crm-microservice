@@ -7,8 +7,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import training.cloud.crmmicroservice.api.dto.CustomerResponseViewModel;
-import training.cloud.crmmicroservice.api.dto.CustomerViewModel;
+import training.cloud.crmmicroservice.api.dto.CustomerResponseModel;
+import training.cloud.crmmicroservice.api.dto.CustomerRequestModel;
 import training.cloud.crmmicroservice.model.CustomerDto;
 
 import javax.validation.Valid;
@@ -43,7 +43,7 @@ public interface CustomerApi {
                     description = SERVICE_UNAVAILABLE_DESCRIPTION,
                     content = @Content)
     })
-    ResponseEntity<Void> save(@Valid @RequestBody CustomerViewModel customerViewModel);
+    ResponseEntity<Void> save(@Valid @RequestBody CustomerRequestModel customerViewModel);
 
 
     @GetMapping(value = "/customers", produces = {APPLICATION_JSON_VALUE})
@@ -57,7 +57,7 @@ public interface CustomerApi {
                     description = SERVICE_UNAVAILABLE_DESCRIPTION,
                     content = @Content)
     })
-    ResponseEntity<List<CustomerResponseViewModel>> findAll();
+    ResponseEntity<List<CustomerResponseModel>> findAll();
 
 
     @GetMapping(value = "/customers/{customerId}", produces = {APPLICATION_JSON_VALUE})
@@ -74,7 +74,7 @@ public interface CustomerApi {
                     description = SERVICE_UNAVAILABLE_DESCRIPTION,
                     content = @Content)
     })
-    ResponseEntity<CustomerResponseViewModel> findByCustomerId(@PathVariable("customerId") String customerId);
+    ResponseEntity<CustomerResponseModel> findByCustomerId(@PathVariable("customerId") String customerId);
 
     @DeleteMapping("/customers/{customerId}")
     @Operation(summary = "Delete by customerId")
@@ -105,7 +105,7 @@ public interface CustomerApi {
                     description = SERVICE_UNAVAILABLE_DESCRIPTION,
                     content = @Content)
     })
-    ResponseEntity<Void> updateByCustomerId(@Valid @RequestBody CustomerViewModel customerViewModel, @PathVariable("customerId") String customerId);
+    ResponseEntity<Void> updateByCustomerId(@Valid @RequestBody CustomerRequestModel customerViewModel, @PathVariable("customerId") String customerId);
 
 
     @GetMapping("/customers/{countryName}")
@@ -119,6 +119,6 @@ public interface CustomerApi {
                     description = SERVICE_UNAVAILABLE_DESCRIPTION,
                     content = @Content)
     })
-    ResponseEntity<List<CustomerDto>> findAllByCountryName(@PathVariable("countryName") String countryName);
+    ResponseEntity<List<CustomerResponseModel>> findAllByCountryName(@PathVariable("countryName") String countryName);
 
 }

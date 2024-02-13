@@ -42,7 +42,7 @@ public class CrmService {
         Customer customer = crmRepository.findByCustomerId(customerDto.getCustomerId());
 
         if (customer == null) {
-            Customer newCustomer = crmMapper.toCustomer(customerDto);
+            Customer newCustomer = crmMapper.toCustomerEntity(customerDto);
             crmRepository.save(newCustomer);
         } else {
             throw new CustomerMismatchException(CUSTOMER_MISMATCH_EXCEPTION_MESSAGE);
@@ -63,7 +63,7 @@ public class CrmService {
     @Transactional
     public CustomerDto updateByCustomerId(CustomerDto customerDto, String customerId) throws CustomerNotFoundException {
         Customer existingCustomer = crmRepository.findByCustomerId(customerId);
-        Customer updatedCustomer = crmMapper.toCustomer(customerDto);
+        Customer updatedCustomer = crmMapper.toCustomerEntity(customerDto);
 
         if (existingCustomer != null) {
             updatedCustomer.setCustomerId(existingCustomer.getCustomerId());

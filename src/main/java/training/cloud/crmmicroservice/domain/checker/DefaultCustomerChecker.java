@@ -1,8 +1,7 @@
-package training.cloud.crmmicroservice.domain.interactor.checker;
+package training.cloud.crmmicroservice.domain.checker;
 
 import lombok.RequiredArgsConstructor;
-import training.cloud.crmmicroservice.domain.interactor.FindCustomer;
-import training.cloud.crmmicroservice.domain.interactor.output.customer.model.CustomerRepositoryModel;
+import training.cloud.crmmicroservice.domain.output.customer.model.CustomerRepositoryModel;
 import training.cloud.crmmicroservice.exception.DefaultCustomerNotFound;
 
 @RequiredArgsConstructor

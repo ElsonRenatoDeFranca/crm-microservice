@@ -3,8 +3,8 @@ package training.cloud.crmmicroservice.converter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
-import training.cloud.crmmicroservice.api.dto.CustomerViewModel;
-import training.cloud.crmmicroservice.domain.interactor.model.CustomerInteractorModel;
+import training.cloud.crmmicroservice.api.dto.CustomerRequestModel;
+import training.cloud.crmmicroservice.domain.model.CustomerInteractorModel;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,7 +18,7 @@ class DefaultCustomerInteractorModelToViewModelConverterTest {
     private DefaultCustomerInteractorModelToViewModelConverter converter;
     private ModelMapper modelMapper;
     private CustomerInteractorModel customerInteractorModel;
-    private CustomerViewModel customerViewModel;
+    private CustomerRequestModel customerViewModel;
 
     private Long id;
     private String customerId;
@@ -44,8 +44,8 @@ class DefaultCustomerInteractorModelToViewModelConverterTest {
 
     @Test
     void testConvert() {
-        when(modelMapper.map(eq(customerInteractorModel), eq(CustomerViewModel.class))).thenReturn(customerViewModel);
-        CustomerViewModel viewModel = assertDoesNotThrow(() -> converter.convert(customerInteractorModel));
+        when(modelMapper.map(eq(customerInteractorModel), eq(CustomerRequestModel.class))).thenReturn(customerViewModel);
+        CustomerRequestModel viewModel = assertDoesNotThrow(() -> converter.convert(customerInteractorModel));
         assertNotNull(viewModel);
         assertEquals(id, viewModel.getId());
         assertEquals(customerId, viewModel.getCustomerId());
@@ -64,8 +64,8 @@ class DefaultCustomerInteractorModelToViewModelConverterTest {
         return customerInteractorModel;
     }
 
-    private CustomerViewModel buildCustomerViewModel() {
-        customerViewModel = new CustomerViewModel();
+    private CustomerRequestModel buildCustomerViewModel() {
+        customerViewModel = new CustomerRequestModel();
         customerViewModel.setId(id);
         customerViewModel.setCustomerId(customerId);
         customerViewModel.setLastName(lastName);

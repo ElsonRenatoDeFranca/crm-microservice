@@ -3,8 +3,8 @@ package training.cloud.crmmicroservice.converter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
-import training.cloud.crmmicroservice.domain.interactor.model.CustomerInteractorModel;
-import training.cloud.crmmicroservice.domain.interactor.output.customer.model.CustomerRepositoryModel;
+import training.cloud.crmmicroservice.domain.model.CustomerInteractorModel;
+import training.cloud.crmmicroservice.domain.output.customer.model.CustomerRepositoryModel;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;

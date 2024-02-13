@@ -3,8 +3,8 @@ package training.cloud.crmmicroservice.converter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
-import training.cloud.crmmicroservice.api.dto.CustomerViewModel;
-import training.cloud.crmmicroservice.domain.interactor.model.CustomerInteractorModel;
+import training.cloud.crmmicroservice.api.dto.CustomerRequestModel;
+import training.cloud.crmmicroservice.domain.model.CustomerInteractorModel;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 class DefaultCustomerViewModelToInteractorModelConverterTest {
     private DefaultCustomerViewModelToInteractorModelConverter converter;
     private ModelMapper modelMapper;
-    private CustomerViewModel customerViewModel;
+    private CustomerRequestModel customerViewModel;
     private CustomerInteractorModel customerInteractorModel;
 
     private Long id;
@@ -55,8 +55,8 @@ class DefaultCustomerViewModelToInteractorModelConverterTest {
     }
 
 
-    private CustomerViewModel buildCustomerViewModel() {
-        customerViewModel = new CustomerViewModel();
+    private CustomerRequestModel buildCustomerViewModel() {
+        customerViewModel = new CustomerRequestModel();
         customerViewModel.setId(id);
         customerViewModel.setCustomerId(customerId);
         customerViewModel.setLastName(lastName);

@@ -1,4 +1,4 @@
-package training.cloud.crmmicroservice.domain.interactor.model;
+package training.cloud.crmmicroservice.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;

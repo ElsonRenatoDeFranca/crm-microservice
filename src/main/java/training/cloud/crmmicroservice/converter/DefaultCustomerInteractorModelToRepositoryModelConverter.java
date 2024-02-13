@@ -3,8 +3,8 @@ package training.cloud.crmmicroservice.converter;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-import training.cloud.crmmicroservice.domain.interactor.model.CustomerInteractorModel;
-import training.cloud.crmmicroservice.domain.interactor.output.customer.model.CustomerRepositoryModel;
+import training.cloud.crmmicroservice.domain.model.CustomerInteractorModel;
+import training.cloud.crmmicroservice.domain.output.customer.model.CustomerRepositoryModel;
 
 
 @Component

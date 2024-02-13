@@ -3,7 +3,7 @@ package training.cloud.crmmicroservice.persistence.converter;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
-import training.cloud.crmmicroservice.domain.interactor.output.customer.model.CustomerRepositoryModel;
+import training.cloud.crmmicroservice.domain.output.customer.model.CustomerRepositoryModel;
 import training.cloud.crmmicroservice.persistence.entity.Customer;
 
 @Component

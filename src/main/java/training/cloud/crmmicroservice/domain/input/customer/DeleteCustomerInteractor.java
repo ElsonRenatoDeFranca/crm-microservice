@@ -1,4 +1,4 @@
-package training.cloud.crmmicroservice.domain.interactor.input.customer;
+package training.cloud.crmmicroservice.domain.input.customer;
 
 public interface DeleteCustomerInteractor {
 

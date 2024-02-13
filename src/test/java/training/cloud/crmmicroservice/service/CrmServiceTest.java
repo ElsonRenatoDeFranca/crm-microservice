@@ -9,7 +9,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import training.cloud.crmmicroservice.model.CustomerDto;
 import training.cloud.crmmicroservice.exception.CustomerMismatchException;
 import training.cloud.crmmicroservice.exception.CustomerNotFoundException;
-import training.cloud.crmmicroservice.mapper.CrmMapper;
 import training.cloud.crmmicroservice.persistence.entity.Customer;
 import training.cloud.crmmicroservice.repository.CrmRepository;
 
@@ -143,7 +142,7 @@ class CrmServiceTest {
         CustomerDto expectedCustomerDto = mockSingleResultFromJson("mock/crm/customerDtoMockResponse.json", CustomerDto.class);
 
         when(crmRepository.findByCustomerId(eq(customerId))).thenReturn(null);
-        when(crmMapper.toCustomer(eq(expectedCustomerDto))).thenReturn(expectedCustomer);
+        when(crmMapper.toCustomerEntity(eq(expectedCustomerDto))).thenReturn(expectedCustomer);
 
         this.crmService.save(expectedCustomerDto);
 
@@ -180,7 +179,7 @@ class CrmServiceTest {
         CustomerDto expectedCustomerDto = mockSingleResultFromJson("mock/crm/customerDtoMockResponse.json", CustomerDto.class);
 
         when(crmRepository.findByCustomerId(eq(customerId))).thenReturn(expectedCustomer);
-        when(crmMapper.toCustomer(eq(expectedCustomerDto))).thenReturn(expectedCustomer);
+        when(crmMapper.toCustomerEntity(eq(expectedCustomerDto))).thenReturn(expectedCustomer);
 
         this.crmService.updateByCustomerId(expectedCustomerDto, customerId);
 
@@ -196,7 +195,7 @@ class CrmServiceTest {
         CustomerDto expectedCustomerDto = mockSingleResultFromJson("mock/crm/customerDtoMockResponse.json", CustomerDto.class);
 
         when(crmRepository.findByCustomerId(eq(customerId))).thenReturn(null);
-        when(crmMapper.toCustomer(eq(expectedCustomerDto))).thenReturn(expectedCustomer);
+        when(crmMapper.toCustomerEntity(eq(expectedCustomerDto))).thenReturn(expectedCustomer);
 
         Assertions.assertThatExceptionOfType(CustomerNotFoundException.class)
                 .isThrownBy(() -> crmService.updateByCustomerId(expectedCustomerDto, customerId))

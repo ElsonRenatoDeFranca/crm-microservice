@@ -3,7 +3,7 @@ package training.cloud.crmmicroservice.persistence.converter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
-import training.cloud.crmmicroservice.domain.interactor.output.customer.model.CustomerRepositoryModel;
+import training.cloud.crmmicroservice.domain.output.customer.model.CustomerRepositoryModel;
 import training.cloud.crmmicroservice.persistence.entity.Customer;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
