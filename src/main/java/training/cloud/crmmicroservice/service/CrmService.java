@@ -6,7 +6,7 @@ import training.cloud.crmmicroservice.exception.CustomerMismatchException;
 import training.cloud.crmmicroservice.exception.CustomerNotFoundException;
 import training.cloud.crmmicroservice.mapper.CrmMapper;
 import training.cloud.crmmicroservice.model.CustomerDto;
-import training.cloud.crmmicroservice.persistence.entity.Customer;
+import training.cloud.crmmicroservice.persistence.entity.CustomerEntity;
 import training.cloud.crmmicroservice.repository.CrmRepository;
 
 import java.util.List;
@@ -30,7 +30,7 @@ public class CrmService {
     }
 
     public CustomerDto findByCustomerId(String customerId) throws CustomerNotFoundException {
-        Customer customer = crmRepository.findByCustomerId(customerId);
+        CustomerEntity customer = crmRepository.findByCustomerId(customerId);
         if (customer == null) {
             throw new CustomerNotFoundException(CUSTOMER_NOT_FOUND_EXCEPTION_MESSAGE);
         }
@@ -39,10 +39,10 @@ public class CrmService {
 
     @Transactional
     public void save(CustomerDto customerDto) throws CustomerMismatchException {
-        Customer customer = crmRepository.findByCustomerId(customerDto.getCustomerId());
+        CustomerEntity customer = crmRepository.findByCustomerId(customerDto.getCustomerId());
 
         if (customer == null) {
-            Customer newCustomer = crmMapper.toCustomerEntity(customerDto);
+            CustomerEntity newCustomer = crmMapper.toCustomerEntity(customerDto);
             crmRepository.save(newCustomer);
         } else {
             throw new CustomerMismatchException(CUSTOMER_MISMATCH_EXCEPTION_MESSAGE);
@@ -51,7 +51,7 @@ public class CrmService {
 
     @Transactional
     public void deleteByCustomerId(String customerId) throws CustomerNotFoundException {
-        Customer customer = crmRepository.findByCustomerId(customerId);
+        CustomerEntity customer = crmRepository.findByCustomerId(customerId);
 
         if (customer != null) {
             crmRepository.deleteByCustomerId(customerId);
@@ -62,8 +62,8 @@ public class CrmService {
 
     @Transactional
     public CustomerDto updateByCustomerId(CustomerDto customerDto, String customerId) throws CustomerNotFoundException {
-        Customer existingCustomer = crmRepository.findByCustomerId(customerId);
-        Customer updatedCustomer = crmMapper.toCustomerEntity(customerDto);
+        CustomerEntity existingCustomer = crmRepository.findByCustomerId(customerId);
+        CustomerEntity updatedCustomer = crmMapper.toCustomerEntity(customerDto);
 
         if (existingCustomer != null) {
             updatedCustomer.setCustomerId(existingCustomer.getCustomerId());

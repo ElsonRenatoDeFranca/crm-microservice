@@ -13,7 +13,7 @@ public class DefaultCustomerInteractorModelToRepositoryModelConverter implements
     private final ModelMapper modelMapper;
 
     @Override
-    public CustomerRepositoryModel convert(CustomerInteractorModel modelFrom) {
-        return modelMapper.map(modelFrom, CustomerRepositoryModel.class);
+    public CustomerRepositoryModel convert(CustomerInteractorModel customerInteractorModel) {
+        return modelMapper.map(customerInteractorModel, CustomerRepositoryModel.class);
     }
 }

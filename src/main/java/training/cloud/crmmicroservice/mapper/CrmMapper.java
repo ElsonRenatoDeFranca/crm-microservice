@@ -6,7 +6,7 @@ import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
-import training.cloud.crmmicroservice.persistence.entity.Customer;
+import training.cloud.crmmicroservice.persistence.entity.CustomerEntity;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public interface CrmMapper {
     @Mapping(target = "firstName", source = "firstName")
     @Mapping(target = "lastName", source = "lastName")
     @Mapping(target = "countryName", source = "countryName")
-    CustomerDto toCustomerDto(Customer customer);
+    CustomerDto toCustomerDto(CustomerEntity customer);
 
 
     @Mapping(target = "id", source = "id")
@@ -28,12 +28,12 @@ public interface CrmMapper {
     @Mapping(target = "firstName", source = "firstName")
     @Mapping(target = "lastName", source = "lastName")
     @Mapping(target = "countryName", source = "countryName")
-    Customer toCustomerEntity(CustomerDto customerDto);
+    CustomerEntity toCustomerEntity(CustomerDto customerDto);
 
 
     @Mapping(target = "id", source = "id")
     @Mapping(target = "customerId", source = "customerId")
     @Mapping(target = "firstName", source = "firstName")
     @Mapping(target = "lastName", source = "lastName")
-    List<CustomerDto> customerEntityListToCustomerDtoList(List<Customer> customers);
+    List<CustomerDto> customerEntityListToCustomerDtoList(List<CustomerEntity> customers);
 }

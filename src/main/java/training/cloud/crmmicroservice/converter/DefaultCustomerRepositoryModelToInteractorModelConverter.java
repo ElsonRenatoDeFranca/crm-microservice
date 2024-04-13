@@ -10,8 +10,8 @@ import training.cloud.crmmicroservice.domain.output.customer.model.CustomerRepos
 public class DefaultCustomerRepositoryModelToInteractorModelConverter implements CustomerRepositoryModelToInteractorModelConverter{
     private final ModelMapper modelMapper;
     @Override
-    public CustomerInteractorModel convert(CustomerRepositoryModel modelFrom) {
-        return modelMapper.map(modelFrom, CustomerInteractorModel.class);
+    public CustomerInteractorModel convert(CustomerRepositoryModel customerRepositoryModel) {
+        return modelMapper.map(customerRepositoryModel, CustomerInteractorModel.class);
 
     }
 }

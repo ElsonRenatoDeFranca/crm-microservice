@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 @Entity
 @EqualsAndHashCode(exclude = {"id"})
@@ -25,7 +24,7 @@ import java.util.List;
 @Setter
 @Builder
 @Table(name="customer", schema = "public")
-public class Customer {
+public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

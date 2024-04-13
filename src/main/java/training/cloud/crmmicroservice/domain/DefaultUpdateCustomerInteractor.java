@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import training.cloud.crmmicroservice.converter.CustomerInteractorModelToRepositoryModelConverter;
 import training.cloud.crmmicroservice.converter.CustomerRepositoryModelToInteractorModelConverter;
 import training.cloud.crmmicroservice.domain.input.customer.UpdateCustomerInteractor;
+import training.cloud.crmmicroservice.domain.interactor.UpdateCustomer;
 import training.cloud.crmmicroservice.domain.model.CustomerInteractorModel;
 
 @RequiredArgsConstructor

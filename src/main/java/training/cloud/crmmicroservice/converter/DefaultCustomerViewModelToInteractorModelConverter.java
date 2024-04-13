@@ -13,7 +13,7 @@ public class DefaultCustomerViewModelToInteractorModelConverter implements Custo
     private final ModelMapper modelMapper;
 
     @Override
-    public CustomerInteractorModel convert(CustomerRequestModel modelFrom) {
-        return modelMapper.map(modelFrom, CustomerInteractorModel.class);
+    public CustomerInteractorModel convert(CustomerRequestModel customerRequestModel) {
+        return modelMapper.map(customerRequestModel, CustomerInteractorModel.class);
     }
 }

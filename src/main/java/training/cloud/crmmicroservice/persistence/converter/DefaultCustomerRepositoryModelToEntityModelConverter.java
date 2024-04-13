@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 import training.cloud.crmmicroservice.domain.output.customer.model.CustomerRepositoryModel;
-import training.cloud.crmmicroservice.persistence.entity.Customer;
+import training.cloud.crmmicroservice.persistence.entity.CustomerEntity;
 
 @Component
 @RequiredArgsConstructor
@@ -12,12 +12,12 @@ public class DefaultCustomerRepositoryModelToEntityModelConverter implements Cus
     private final ModelMapper modelMapper;
 
     @Override
-    public Customer toEntity(CustomerRepositoryModel model) {
-        return modelMapper.map(model, Customer.class);
+    public CustomerEntity toEntity(CustomerRepositoryModel customerRepositoryModel) {
+        return modelMapper.map(customerRepositoryModel, CustomerEntity.class);
     }
 
     @Override
-    public CustomerRepositoryModel fromEntity(Customer entity) {
-        return modelMapper.map(entity, CustomerRepositoryModel.class);
+    public CustomerRepositoryModel fromEntity(CustomerEntity customerEntity) {
+        return modelMapper.map(customerEntity, CustomerRepositoryModel.class);
     }
 }

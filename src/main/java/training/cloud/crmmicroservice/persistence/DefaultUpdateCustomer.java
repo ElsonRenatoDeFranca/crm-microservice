@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import training.cloud.crmmicroservice.domain.output.customer.model.CustomerRepositoryModel;
 import training.cloud.crmmicroservice.persistence.converter.CustomerRepositoryModelToEntityModelConverter;
-import training.cloud.crmmicroservice.persistence.entity.Customer;
+import training.cloud.crmmicroservice.persistence.entity.CustomerEntity;
 import training.cloud.crmmicroservice.persistence.repository.CustomerRepository;
 
 @Component
@@ -15,7 +15,7 @@ public class DefaultUpdateCustomer implements UpdateCustomer {
 
     @Override
     public CustomerRepositoryModel update(CustomerRepositoryModel customerRepositoryModel) {
-        Customer customer = customerRepository.findByCustomerId(customerRepositoryModel.getCustomerId());
+        CustomerEntity customer = customerRepository.findByCustomerId(customerRepositoryModel.getCustomerId());
 
         return null;
     }

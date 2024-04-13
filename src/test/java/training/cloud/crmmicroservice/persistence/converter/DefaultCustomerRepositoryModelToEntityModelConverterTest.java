@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 import training.cloud.crmmicroservice.domain.output.customer.model.CustomerRepositoryModel;
-import training.cloud.crmmicroservice.persistence.entity.Customer;
+import training.cloud.crmmicroservice.persistence.entity.CustomerEntity;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,7 +17,7 @@ class DefaultCustomerRepositoryModelToEntityModelConverterTest {
 
     private DefaultCustomerRepositoryModelToEntityModelConverter converter;
     private CustomerRepositoryModel customerRepositoryModel;
-    private Customer customerEntity;
+    private CustomerEntity customerEntity;
     private ModelMapper modelMapper;
 
     private Long id;
@@ -44,9 +44,9 @@ class DefaultCustomerRepositoryModelToEntityModelConverterTest {
 
     @Test
     void testConvertRepositoryModelToEntityModelWhenCustomerRepositoryIsProvided() {
-        when(modelMapper.map(eq(customerRepositoryModel), eq(Customer.class))).thenReturn(customerEntity);
+        when(modelMapper.map(eq(customerRepositoryModel), eq(CustomerEntity.class))).thenReturn(customerEntity);
 
-        Customer customerEntityModel = assertDoesNotThrow(() -> converter.toEntity(customerRepositoryModel));
+        CustomerEntity customerEntityModel = assertDoesNotThrow(() -> converter.toEntity(customerRepositoryModel));
 
         assertNotNull(customerEntityModel);
         assertEquals(id, customerEntityModel.getId());
@@ -81,7 +81,7 @@ class DefaultCustomerRepositoryModelToEntityModelConverterTest {
     }
 
     private void buildCustomerEntity() {
-        customerEntity = new Customer();
+        customerEntity = new CustomerEntity();
         customerEntity.setId(id);
         customerEntity.setCustomerId(customerId);
         customerEntity.setLastName(lastName);

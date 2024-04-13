@@ -2,6 +2,9 @@ package training.cloud.crmmicroservice.domain;
 
 import lombok.RequiredArgsConstructor;
 import training.cloud.crmmicroservice.domain.input.customer.DeleteCustomerInteractor;
+import training.cloud.crmmicroservice.domain.interactor.DeleteCustomer;
+import training.cloud.crmmicroservice.domain.interactor.FindCustomer;
+import training.cloud.crmmicroservice.domain.interactor.UpdateCustomer;
 
 @RequiredArgsConstructor
 public class DefaultDeleteCustomerInteractor implements DeleteCustomerInteractor {

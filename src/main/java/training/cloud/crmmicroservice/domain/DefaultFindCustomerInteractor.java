@@ -3,6 +3,7 @@ package training.cloud.crmmicroservice.domain;
 import lombok.RequiredArgsConstructor;
 import training.cloud.crmmicroservice.converter.CustomerRepositoryModelToInteractorModelConverter;
 import training.cloud.crmmicroservice.domain.input.customer.FindCustomerInteractor;
+import training.cloud.crmmicroservice.domain.interactor.FindCustomer;
 import training.cloud.crmmicroservice.domain.model.CustomerInteractorModel;
 
 import java.util.List;
