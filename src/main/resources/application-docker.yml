@@ -1,0 +1,3 @@
+spring:
+  datasource:
+    url: "jdbc:postgresql://crm-db:5432/tech-talk-db"

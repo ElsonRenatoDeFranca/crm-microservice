@@ -1,4 +1,4 @@
-package training.cloud.crmmicroservice.common;
+package com.poc.microservice.common;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package training.cloud.crmmicroservice.resource;
+package com.poc.microservice.resource;
 
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -6,105 +6,99 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import training.cloud.crmmicroservice.model.CustomerDto;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import com.poc.microservice.model.UnnaxTransactionDto;
 
 import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@RequestMapping("/api/crm")
-public interface CrmApi {
-    @PostMapping(value = "/customers", produces = {APPLICATION_JSON_VALUE})
-    @Operation(summary = "Save a customer to database")
+@RequestMapping("/api/cecoban")
+public interface UnnaxTransactionManagerApi {
+    @PostMapping(value = "/transaction", produces = {APPLICATION_JSON_VALUE})
+    @Operation(summary = "Save webhook response to database")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201",
-                    description = "Save a customer to database",
+                    description = "Save a webhook response to database",
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "406",
-                    description = "The customer is already at database",
+                    description = "The webhook response is already at database",
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "503",
                     description = "The service is not available",
                     content = @Content)
     })
-    ResponseEntity<Void> save(@Valid @RequestBody CustomerDto customerDto);
+    ResponseEntity<Void> save(@Valid @RequestBody UnnaxTransactionDto unnaxTransactionDto);
 
 
-    @GetMapping(value = "/customers", produces = {APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/transaction", produces = {APPLICATION_JSON_VALUE})
     @ResponseBody
-    @Operation(summary = "Find all customers")
+    @Operation(summary = "Find all webhook responses")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "Find all customers",
+                    description = "Find all webhook responses",
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "503",
                     description = "The service is not available",
                     content = @Content)
     })
-    ResponseEntity<List<CustomerDto>> findAll();
+    ResponseEntity<List<UnnaxTransactionDto>> findAll();
 
 
-    @GetMapping(value = "/customers/{customerId}", produces = {APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/transaction/{traceIdentifier}", produces = {APPLICATION_JSON_VALUE})
     @ResponseBody
-    @Operation(summary = "Find customer by customerId")
+    @Operation(summary = "Find by traceIdentifier")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "Find a customer by customerId",
+                    description = "Find by traceIdentifier",
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "404",
-                    description = "Customer not found at database",
+                    description = "traceIdentifier not found at database",
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "503",
                     description = "The service is not available",
                     content = @Content)
     })
-    ResponseEntity<CustomerDto> findByCustomerId(@PathVariable("customerId") String customerId);
+    ResponseEntity<UnnaxTransactionDto> findByTraceIdentifier(@PathVariable("traceIdentifier") String traceIdentifier);
 
-    @DeleteMapping("/customers/{customerId}")
-    @Operation(summary = "Delete by customerId")
+    @DeleteMapping("/transaction/{traceIdentifier}")
+    @Operation(summary = "Delete by traceIdentifier")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "Delete by customerId",
+                    description = "Delete by traceIdentifier",
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "404",
-                    description = "Customer not found",
+                    description = "traceIdentifier not found",
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "503",
                     description = "The service is not available",
                     content = @Content)
     })
-    ResponseEntity<Void> deleteByCustomerId(@PathVariable("customerId") String customerId);
+    ResponseEntity<Void> deleteByTraceIdentifier(@PathVariable("traceIdentifier") String traceIdentifier);
 
 
-    @RequestMapping(value = "/customers/{customerId}", method = RequestMethod.PUT)
-    @Operation(summary = "Update by customerId")
+    @PutMapping(value = "/transaction/{traceIdentifier}")
+    @Operation(summary = "Update by traceIdentifier")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "update by customerId",
+                    description = "update by traceIdentifier",
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "404",
-                    description = "customer not found",
+                    description = "traceIdentifier not found",
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(responseCode = "503",
                     description = "The service is not available",
                     content = @Content)
     })
-    ResponseEntity<Void> updateByCustomerId(@Valid @RequestBody CustomerDto customerDto, @PathVariable("customerId") String customerId);
+    ResponseEntity<UnnaxTransactionDto> updateByTraceIdentifier(@Valid @RequestBody UnnaxTransactionDto unnaxTransactionDto, @PathVariable("traceIdentifier") String traceIdentifier);
 
-
-    @GetMapping("/customers/{countryName}")
-    @ResponseBody
-    @Operation(summary = "Find all customers by countryName")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",
-                    description = "Find all customers by countryName",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(responseCode = "503",
-                    description = "The service is not available",
-                    content = @Content)
-    })
-    ResponseEntity<List<CustomerDto>> findAllByCountryName(@PathVariable("countryName") String countryName);
 
 }
