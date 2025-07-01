@@ -10,6 +10,7 @@ import training.cloud.crmmicroservice.model.CustomerDto;
 import training.cloud.crmmicroservice.repository.CrmRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CrmService {
@@ -26,7 +27,9 @@ public class CrmService {
     }
 
     public List<CustomerDto> findAll() {
-        return crmMapper.customerEntityListToCustomerDtoList(crmRepository.findAll());
+        List<Customer> customersEntity = crmRepository.findAll();
+        List<CustomerDto> customerDtos = customersEntity.stream().map(entity -> crmMapper.toCustomerDto(entity)).collect(Collectors.toList());
+        return customerDtos;
     }
 
     public CustomerDto findByCustomerId(String customerId) throws CustomerNotFoundException {
